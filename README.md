@@ -70,11 +70,11 @@ flowchart TD;
     bci-detail(View product image and detail by various producers)
     bci-compare(Compare the products from different sellers)
     bci-contact(Contact the seller)
-    bci-end((Complete))
+    bci-done((Complete))
     setup-dev-->bci
     bci-->bci-search
     bci-search-->bci-detail
     bci-detail-->bci-compare
     bci-compare-->bci-contact
-    bci-contact-->bci-end
+    bci-contact-->bci-done
 ```
