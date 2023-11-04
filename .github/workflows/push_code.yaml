@@ -1,4 +1,3 @@
-
 name: Push to Another Repository
 
 on:
@@ -21,11 +20,11 @@ jobs:
         run: |
           # Set up Git user
           
-          git remote add target-repo-temp https://github.com/One-District-One-Product/testall.git
+          git remote add target-repo https://github.com/One-District-One-Product/ODOP-Test.git
           git remote -v
           git branch -a
           git config --global user.name "Tanya-DSU"
           git config --global user.email "141429948+Tanya-DSU@users.noreply.github.com"
           # Add the target repository as a remote
           # Push the code to the target repository
-          git push --force target-repo-temp main:tester # Replace 'main' with the appropriate branch
+          git push --force target-repo main:test # Replace 'main' with the appropriate branch
