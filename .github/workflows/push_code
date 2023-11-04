@@ -1,0 +1,31 @@
+
+name: Push to Another Repository
+
+on:
+  push:
+    branches:
+      - main  # Replace with the source branch you want to trigger the workflow
+permissions: write-all
+jobs:
+  push_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          token: ${{ secrets.PAT_ACCESS_TOKEN }}
+
+      - name: Push to Target Repository
+        run: |
+          # Set up Git user
+          
+          git remote add target-repo https://github.com/Tanya-DSU/ODOP-Test
+          git remote -v
+          git branch -a
+          git config --global user.name "Tanya-DSU"
+          git config --global user.email "141429948+Tanya-DSU@users.noreply.github.com"
+          # Add the target repository as a remote
+          # Push the code to the target repository
+          git push --force target-repo main # Replace 'main' with the appropriate branch
