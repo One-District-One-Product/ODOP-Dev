@@ -21,7 +21,7 @@ jobs:
         run: |
           # Set up Git user
           
-          git remote add target-repo https://github.com/One-District-One-Product/ODOP-Test.git
+          git remote add target-repo https://github.com/One-District-One-Product/ODOP-Prod.git
           git remote -v
           git branch -a
           git config --global user.name "Tanya-DSU"
