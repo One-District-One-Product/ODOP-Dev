@@ -60,4 +60,21 @@ flowchart TD;
     bci-upload-->bci-detail
     bci-detail-->bci-submit
 ```
+###Consumer POV
 
+```mermaid
+flowchart TD;
+    setup-dev(Visit the Website)
+    bci(Browse through the districts)
+    bci-search(Check out authentic products of each district)
+    bci-detail(View product image and detail by various producers)
+    bci-compare(Compare the products from different sellers)
+    bci-contact(Contact the seller)
+    bci-end((Complete))
+    setup-dev-->bci
+    bci-->bci-search
+    bci-search-->bci-detail
+    bci-detail-->bci-compare
+    bci-compare-->bci-contact
+    bci-contact-->bci-end
+```
