@@ -28,4 +28,4 @@ jobs:
           git config --global user.email "141429948+Tanya-DSU@users.noreply.github.com"
           # Add the target repository as a remote
           # Push the code to the target repository
-          git push --force target-repo main:test # Replace 'main' with the appropriate branch
+          git push --force target-repo test # Replace 'main' with the appropriate branch
