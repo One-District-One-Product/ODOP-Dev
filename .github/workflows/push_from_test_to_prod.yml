@@ -20,11 +20,11 @@ jobs:
         run: |
           # Set up Git user
           
-          git remote add prod https://github.com/One-District-One-Product/ODOP-Prod
+          git remote add prod-repo https://github.com/One-District-One-Product/ODOP-Prod
           git remote -v
           git branch -a
-          git config user.name "Tanya-DSU"
-          git config user.email "141429948+Tanya-DSU@users.noreply.github.com"
+          git config user.name Tanya-DSU
+          git config user.email 141429948+Tanya-DSU@users.noreply.github.com
           # Add the target repository as a remote
           # Push the code to the target repository
-          git push --force prod test:prod # Replace 'main' with the appropriate branch
+          git push --force prod-repo test:prod # Replace 'main' with the appropriate branch
