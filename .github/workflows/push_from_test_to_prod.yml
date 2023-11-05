@@ -20,7 +20,7 @@ jobs:
         run: |
           # Set up Git user
           
-          git remote add prod https://github.com/One-District-One-Product/ODOP-Prod.git
+          git remote add prod https://github.com/One-District-One-Product/ODOP-Prod
           git remote -v
           git branch -a
           git config user.name "Tanya-DSU"
