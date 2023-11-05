@@ -6,7 +6,7 @@ on:
       - main  # Replace with the source branch you want to trigger the workflow
 permissions: write-all
 jobs:
-  push_code:
+  push_code_from_dev_to_test:
     runs-on: ubuntu-latest
 
     steps:
