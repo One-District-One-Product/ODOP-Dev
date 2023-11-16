@@ -6,7 +6,7 @@ on:
       - main  # Replace with the source branch you want to trigger the workflow
 permissions: write-all
 jobs:
-  push_code_from_dev_to_test:
+  push_code_from_test_to_prod:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +27,4 @@ jobs:
           git config --global user.email "141429948+Tanya-DSU@users.noreply.github.com"
           # Add the target repository as a remote
           # Push the code to the target repository
-          git push --force testing main:test # Replace 'main' with the appropriate branch
+          git push  testing test:prod # Replace 'main' with the appropriate branch
