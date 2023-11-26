@@ -10,21 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Source Repository
-        uses: actions/checkout@v4
+      - name: code folder
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+         API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN_1 }} # Use the correct environment variable name
         with:
-          ref: main
-          token: ${{ secrets.PAT_ACCESS_TOKEN }}
-
-      - name: Push to Target Repository
-        run: |
-          # Set up Git user
-          
-          git remote add testing https://github.com/One-District-One-Product/ODOP-Test.git
-          git remote -v
-          git branch -a
-          git config --global user.name "Tanya-DSU"
-          git config --global user.email "141429948+Tanya-DSU@users.noreply.github.com"
-          # Add the target repository as a remote
-          # Push the code to the target repository
-          git push  testing main:test # Replace 'main' with the appropriate branch
+          source_file: 'client/'
+          destination_repo: 'One-District-One-Product/ODOP-Test'
+          user_email: 'eng21ct0044@dsu.edu.in'
+          user_name: 'Tanya-DSU'
