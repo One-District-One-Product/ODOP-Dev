@@ -79,5 +79,3 @@ flowchart TD;
     bci-compare-->bci-contact
     bci-contact-->bci-done
 ```
-
-Test JIRA
