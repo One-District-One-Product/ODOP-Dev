@@ -1,0 +1,34 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Snyk Security Scan
+        run: npx snyk test --json > snyk_report.json
+
+      - name: Notify Developers
+        run: |
+          VULNERABILITIES=$(cat snyk_report.json | jq -r '.vulnerabilities')
+
+          # Send notifications to developers using Slack
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security vulnerabilities found: $VULNERABILITIES\"}" $SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
