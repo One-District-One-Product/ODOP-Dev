@@ -20,7 +20,7 @@ jobs:
       - name: code file
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-         API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN_1 }} # Use the correct environment variable name
+         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }} # Use the correct environment variable name
         with:
           source_file: 'README.md'
           destination_repo: 'One-District-One-Product/ODOP-Test'
