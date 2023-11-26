@@ -21,9 +21,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Snyk Scan
+        run: npx snyk test
+
       - name: Run Snyk Security Scan
-        run: npx snyk upgrade 
-          npx snyk test --json > snyk_report.json
+        run: npx snyk test --json > snyk_report.json
 
       - name: Notify Developers
         run: |
