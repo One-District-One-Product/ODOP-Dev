@@ -22,7 +22,8 @@ jobs:
         run: npm install
 
       - name: Run Snyk Security Scan
-        run: npx snyk test --json > snyk_report.json
+        run: npx snyk upgrade 
+          npx snyk test --json > snyk_report.json
 
       - name: Notify Developers
         run: |
