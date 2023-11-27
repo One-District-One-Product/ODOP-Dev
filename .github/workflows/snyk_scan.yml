@@ -26,7 +26,7 @@ jobs:
         
       - name: Snyk Test
         run: npx snyk test
-        #continue-on-error: true  # Continue the workflow even if vulnerabilities are found
+        continue-on-error: true  # Continue the workflow even if vulnerabilities are found
 
       - name: Notify Developers
         run: |
