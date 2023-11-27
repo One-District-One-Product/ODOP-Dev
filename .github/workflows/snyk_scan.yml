@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Snyk Scan
-        run: npx snyk test
+        run: npx snyk test --anonymous
 
       - name: Run Snyk Security Scan
         run: npx snyk test --json > snyk_report.json
