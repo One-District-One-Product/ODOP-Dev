@@ -32,12 +32,10 @@ jobs:
           VULNERABILITIES=$(cat snyk_report.json | jq -r '.vulnerabilities')
 
           # Send notifications to developers using Slack
-          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security vulnerabilities found: $VULNERABILITIES\"}" $SLACK_WEBHOOK_URL
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security vulnerabilities found: $VULNERABILITIES\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
+          
       - name: Send Slack Notification
         run: |
-          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security vulnerabilities found in the latest commit!\"}" $SLACK_WEBHOOK_URL
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
+          # Send a general notification for any result (success or failure)
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security scanning completed.\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()  # Execute this step regardless of the previous steps' results
