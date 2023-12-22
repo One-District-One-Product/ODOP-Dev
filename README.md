@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/One-District-One-Product/ODOP-Dev/branch/main/graph/badge.svg)](https://codecov.io/gh/One-District-One-Product/ODOP-Dev)
+
 ## One District One  Product
 The One District One Product (ODOP) initiative is a unique program designed to promote the distinctive products that each district of Jammu and Kashmir excels in. It aims to support local artisans and producers, uplift local economies, and preserve traditional craftsmanship.
 
