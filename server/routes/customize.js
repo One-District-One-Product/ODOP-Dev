@@ -12,7 +12,7 @@ var storage = multer.diskStorage({
   },
 });
 
-//const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 router.get("/get-slide-image", customizeController.getImages);
 router.post("/delete-slide-image", customizeController.deleteSlideImage);
