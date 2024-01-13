@@ -1,0 +1,40 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Authenticate Snyk
+        run: npx snyk auth ${{ secrets.SNYK_TOKEN }}
+        
+      - name: Snyk Test
+        run: npx snyk test
+        continue-on-error: true  # Continue the workflow even if vulnerabilities are found
+
+      - name: Notify Developers
+        run: |
+          # Send notifications to developers using Slack
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security vulnerabilities found during Snyk test.\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
+          
+      - name: Send Slack Notification
+        run: |
+          # Send a general notification for any result (success or failure)
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"Security scanning completed.\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()  # Execute this step regardless of the previous steps' results
