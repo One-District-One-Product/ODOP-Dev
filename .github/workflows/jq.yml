@@ -1,0 +1,20 @@
+name: Install jq
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install-jq:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install jq
+        run: sudo apt-get install jq -y
+
+      - name: Check jq Installation
+        run: jq --version
