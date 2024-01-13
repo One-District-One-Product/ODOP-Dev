@@ -1,0 +1,30 @@
+name: Push from test to prod Repository
+#test
+on:
+  push:
+    branches: [ "test" ]
+        # Replace with the source branch you want to trigger the workflow
+permissions: write-all
+jobs:
+  push_code_from_test_to_prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v4
+        with:
+          ref: "test"
+          token: ${{ secrets.PAT_ACCESS_TOKEN_TWO }}
+
+      - name: Push to prod Target Repository
+        run: |
+          # Set up Git user
+          
+          git remote add prod-repo https://github.com/One-District-One-Product/ODOP-Prod.git
+          git remote -v
+          git branch -a
+          git config user.name Tanya-DSU
+          git config user.email 141429948+Tanya-DSU@users.noreply.github.com
+          # Add the target repository as a remote
+          # Push the code to the target repository
+          git push --force prod-repo test:prod # Replace 'main' with the appropriate branch
