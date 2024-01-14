@@ -5,42 +5,93 @@ on:
     branches:
       - main  # Replace with the source branch you want to trigger the workflow
 permissions: write-all
+
 jobs:
+  analyze:
+    name: Analyze
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript', 'python' ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: "/language:${{matrix.language}}"
+          sarif-file: /home/runner/work/ODOP-Test/results/${{ matrix.language }}.sarif
+      - name: Upload CodeQL SARIF report
+        uses: actions/upload-artifact@v2
+        with:
+          name: codeql-report
+          path: /home/runner/work/ODOP-Test/results/${{ matrix.language }}.sarif
+        
+  wapiti_scan:
+    name: Wapiti DAST Scan
+    runs-on: ubuntu-latest
+    needs: [analyze]
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Wapiti
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wapiti
+      - name: Run Wapiti scan
+        run: |
+          wapiti -u http://44.213.170.186:3000/ -o wapiti-report.html
+      - name: Upload Wapiti HTML report
+        uses: actions/upload-artifact@v2
+        with:
+          name: wapiti-report
+          path: wapiti-report.html
+
   push_code_from_test_to_prod:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
       pages: write 
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-            
       - name: client code
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }} # Use the correct environment variable name
+         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }}
         with:
           source_file: 'client/'
           destination_repo: 'One-District-One-Product/ODOP-Test'
           user_email: 'eng21ct0044@dsu.edu.in'
           user_name: 'Tanya-DSU'
-
       - name: server code
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }} # Use the correct environment variable name
+         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }}
         with:
           source_file: 'server'
           destination_repo: 'One-District-One-Product/ODOP-Test'
           user_email: 'eng21ct0044@dsu.edu.in'
           user_name: 'Tanya-DSU'
-
       - name: .DS_Store file
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }} # Use the correct environment variable name
+         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }}
         with:
           source_file: '.DS_Store'
           destination_repo: 'One-District-One-Product/ODOP-Test'
