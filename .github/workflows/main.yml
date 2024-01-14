@@ -16,16 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: README file
-        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-        env:
-         API_TOKEN_GITHUB: ${{ secrets.PAT_ACCESS_TOKEN_1 }} # Use the correct environment variable name
-        with:
-          source_file: 'README.md'
-          destination_repo: 'One-District-One-Product/ODOP-Test'
-          user_email: 'eng21ct0044@dsu.edu.in'
-          user_name: 'Tanya-DSU'
             
       - name: client code
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
