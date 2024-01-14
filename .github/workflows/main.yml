@@ -32,12 +32,12 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
-          sarif-file: /home/runner/work/ODOP-Test/results/${{ matrix.language }}.sarif
+          sarif-file: ./results/${{ matrix.language }}.sarif
       - name: Upload CodeQL SARIF report
         uses: actions/upload-artifact@v2
         with:
           name: codeql-report
-          path: /home/runner/work/ODOP-Test/results/${{ matrix.language }}.sarif
+          path: ./results/${{ matrix.language }}.sarif
         
   wapiti_scan:
     name: Wapiti DAST Scan
