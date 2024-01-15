@@ -54,7 +54,7 @@ jobs:
           sudo apt-get install -y wapiti
       - name: Run Wapiti scan
         run: |
-          wapiti -u http://44.213.170.186:3000/ -o wapiti-report.html
+          wapiti -u https://www.linkedin.com/in/afsha-rather-46755723b/ -o wapiti-report.html
       - name: Upload Wapiti HTML report
         uses: actions/upload-artifact@v2
         with:
