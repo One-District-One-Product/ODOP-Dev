@@ -32,12 +32,12 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
-          sarif-file: ./results/${{ matrix.language }}.sarif
+          sarif-file: /home/runner/work/_temp/codeql_databases/javascript.zip
       - name: Upload CodeQL SARIF report
         uses: actions/upload-artifact@v2
         with:
           name: codeql-report
-          path: ./results/${{ matrix.language }}.sarif
+          path: /home/runner/work/_temp/codeql_databases/javascript.zip
         
   wapiti_scan:
     name: Wapiti DAST Scan
@@ -63,6 +63,7 @@ jobs:
 
   push_code_from_test_to_prod:
     runs-on: ubuntu-latest
+    needs: [analyze, wapiti_scan]
     permissions:
       contents: write
       packages: write
