@@ -39,6 +39,23 @@ jobs:
           name: codeql-report
           path: /home/runner/work/_temp/codeql_databases/javascript.zip
         
+  Unit_Testing:
+    name: Unit-Testing
+    runs-on: ubuntu-latest
+    needs: [analyze]
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Wapiti
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wapiti
+      - name: Run Wapiti scan
+        run: |
+          wapiti -u http://xyz-test37-362734683.us-east-1.elb.amazonaws.com/ -o wapiti-report.html
+      
   wapiti_scan:
     name: Wapiti DAST Scan
     runs-on: ubuntu-latest
