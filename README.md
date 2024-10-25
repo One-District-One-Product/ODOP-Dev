@@ -35,6 +35,9 @@ Consumers POV:
 ```npm run build```
 
 ##Screenshots
+<img width="1470" alt="Screenshot 2024-10-25 at 12 01 06 PM" src="https://github.com/user-attachments/assets/7d485dc7-66dd-4361-8162-61bba861f388">
+
+
 
 ![WhatsApp Image 2023-10-19 at 9 03 17 AM](https://github.com/One-District-One-Product/ODOP-Dev/assets/113474452/fb4967ca-6ed1-4d53-9ec4-0e50f34151d6)
 
