@@ -37,7 +37,10 @@ Consumers POV:
 ##Screenshots
 <img width="1470" alt="Screenshot 2024-10-25 at 12 01 06 PM" src="https://github.com/user-attachments/assets/7d485dc7-66dd-4361-8162-61bba861f388">
 
+<img width="1470" alt="Screenshot 2024-10-25 at 12 02 22 PM" src="https://github.com/user-attachments/assets/948df89c-a073-4c26-967b-e215b2fe7453">
 
+<img width="1470" alt="Screenshot 2024-10-25 at 12 02 07 PM" src="https://github.com/user-attachments/assets/e44bfe16-d64e-4bc0-a326-6e6d5889a448">
+<img width="1470" alt="Screenshot 2024-10-25 at 12 01 55 PM" src="https://github.com/user-attachments/assets/85ee69b0-4f5f-41e8-bc09-52394d7fc1f0">
 
 
 
